@@ -48,5 +48,6 @@
                    Margin="220,122,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" RenderTransformOrigin="-1.296,0.587"/>
         <TextBlock x:Name="EndY_Error_Block" HorizontalAlignment="Left" 
                    Margin="222,247,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" />
+        <Canvas x:Name="GraphCanvas" Width="400" Height="400" Background="White" Margin="360,0,40,34"/>
     </Grid>
 </Window>

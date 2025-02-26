@@ -19,9 +19,9 @@ namespace WPF_Proj.Service
             { '(', 0 }, { ')', 0 }, { '*', 2 }, { '/', 2 }, { '+', 1 }, { '-', 1 }
         };
 
-        static bool Is_alpha(char c) => ( c >= 'a' && c <= 'z' ) || ( c >= 'A' && c <= 'Z' );
-        static bool Is_function(string func) => functions.ContainsKey(func);
-        static int Get_operator_priority(char op) => operations[op];
+        private static bool Is_alpha(char c) => ( c >= 'a' && c <= 'z' ) || ( c >= 'A' && c <= 'Z' );
+        private static bool Is_function(string func) => functions.ContainsKey(func);
+        private static int Get_operator_priority(char op) => operations[op];
 
         static int Process_number(string expression, List<string> output)
         {
@@ -87,7 +87,7 @@ namespace WPF_Proj.Service
             return output;
         }
 
-        static void process_operator(char opp, List<string> output, Stack<string> op_stack)
+        private static void process_operator(char opp, List<string> output, Stack<string> op_stack)
         {
             while ( op_stack.Count > 0 &&
                    operations.ContainsKey(op_stack.Peek()[0]) &&
@@ -100,7 +100,7 @@ namespace WPF_Proj.Service
 
 
 
-        static void process_closing_parenthesis(List<string> output, Stack<string> op_stack)
+        private static void process_closing_parenthesis(List<string> output, Stack<string> op_stack)
         {
             while ( op_stack.Count > 0 && op_stack.Peek() != "(" )
             {

@@ -9,13 +9,11 @@ namespace WPF_Proj.Service
     public static class FunctionParser
     {
         public static IEnumerable<Point> CalculatePoints(
-            string function,
-            double xMin,
-            double xMax,
+            GraphData data,
             double step)
         {
-            var posfix = Lex.Shunting_yard(function);
-            for ( double x = xMin; x <= xMax; x += step )
+            var posfix = Lex.Shunting_yard(data.FunctionName);
+            for ( double x = data.StartX; x <= data.EndX; x += step )
             {
                 yield return new Point(
                     x,

@@ -11,7 +11,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_Proj.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-
+using WPF_Proj.Service;
+using WPF_Proj;
+using WPF_Proj.VIews;
 namespace WpfApp2;
 
 /// <summary>
@@ -55,7 +57,9 @@ public partial class MainWindow : Window
             EndY = endY,
             FunctionName = functionName
         };
-
+        var points = FunctionParser.CalculatePoints(graphData, 0.05);
+        var view = new ViewGraph(GraphCanvas,graphData);
+        view.DrawGraph(points);
         MessageBox.Show($"StartX: {graphData.StartX}, EndX: {graphData.EndX}\n" +
                         $"StartY: {graphData.StartY}, EndY: {graphData.EndY}\n" +
                         $"Function: {graphData.FunctionName}",
