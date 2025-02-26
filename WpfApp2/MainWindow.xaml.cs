@@ -14,6 +14,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using WPF_Proj.Service;
 using WPF_Proj;
 using WPF_Proj.VIews;
+using WPF_Proj.BD_integration;
 namespace WpfApp2;
 
 /// <summary>
@@ -60,6 +61,12 @@ public partial class MainWindow : Window
         var points = FunctionParser.CalculatePoints(graphData, 0.05);
         var view = new ViewGraph(GraphCanvas,graphData);
         view.DrawGraph(points);
+        using ( var db = new GraphDbContext() )
+        {
+            db.Database.EnsureCreated(); // Создаёт БД, если её нет
+            db.Graphs.Add(graphData);
+            db.SaveChanges();
+        }
         MessageBox.Show($"StartX: {graphData.StartX}, EndX: {graphData.EndX}\n" +
                         $"StartY: {graphData.StartY}, EndY: {graphData.EndY}\n" +
                         $"Function: {graphData.FunctionName}",
